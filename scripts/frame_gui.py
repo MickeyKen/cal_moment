@@ -46,6 +46,14 @@ class Ui_Dialog(object):
         self.label.setGeometry(QtCore.QRect(445, 450, 50, 25))
         self.label.setObjectName("label")
 
+        self.pushButton = QtWidgets.QPushButton(Dialog)
+        self.pushButton.setGeometry(QtCore.QRect(480, 350, 200, 25))
+        self.pushButton.setObjectName("pushButton")
+
+        self.pushButton2 = QtWidgets.QPushButton(Dialog)
+        self.pushButton2.setGeometry(QtCore.QRect(480, 390, 200, 25))
+        self.pushButton2.setObjectName("pushButton")
+
         self.show_img = np.zeros((300,660,3), dtype=np.uint8)
         self.show_img.fill(255)
         cv2.circle(self.show_img, (self.show_img.shape[1]/2, self.show_img.shape[0]/2), 7, (0, 0, 0), thickness=-1)
@@ -62,3 +70,4 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        self.pushButton.setText(_translate("Dialog", "Adding Object"))
