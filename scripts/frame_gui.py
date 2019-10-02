@@ -42,6 +42,10 @@ class Ui_Dialog(object):
         self.imageLabel.move(20,20)
         self.imageLabel.setMouseTracking(True)
 
+        self.label = QtWidgets.QLabel(Dialog)
+        self.label.setGeometry(QtCore.QRect(445, 450, 50, 25))
+        self.label.setObjectName("label")
+
         self.show_img = np.zeros((300,660,3), dtype=np.uint8)
         self.show_img.fill(255)
         cv2.circle(self.show_img, (self.show_img.shape[1]/2, self.show_img.shape[0]/2), 7, (0, 0, 0), thickness=-1)
