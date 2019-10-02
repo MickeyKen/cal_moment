@@ -23,9 +23,9 @@ class Test(QDialog):
         # p = self.palette()
         # p.setColor(self.backgroundRole(), Qt.lightGray)
         # self.setPalette(p)
-        self.ui.dial.setMinimum(0)
-        self.ui.dial.setMaximum(360)
-        self.ui.dial.setValue(180)
+        self.ui.dial.setMinimum(-60)
+        self.ui.dial.setMaximum(60)
+        self.ui.dial.setValue(0)
         self.ui.dial.valueChanged.connect(self.sliderMoved)
         self.init_draw()
         self.img_draw(180)
@@ -36,9 +36,9 @@ class Test(QDialog):
         self.ui.imageLabel.setPixmap(QPixmap.fromImage(qimg))
 
     def sliderMoved(self):
-    	value = self.ui.dial.value() - 180
+    	value = self.ui.dial.value()
         self.ui.label.setText(str(value))
-        self.img_draw(value)
+        self.img_draw(-value)
 
     def img_draw(self, angle):
         L_p = [-330,0]
