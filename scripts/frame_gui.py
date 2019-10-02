@@ -7,11 +7,14 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap, QImage
+import numpy as np
+import cv2
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(698, 494)
+        Dialog.resize(700, 500)
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
         self.buttonBox.setGeometry(QtCore.QRect(340, 440, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
@@ -35,6 +38,18 @@ class Ui_Dialog(object):
         self.verticalSlider.setObjectName("verticalSlider")
         self.horizontalLayout.addWidget(self.verticalSlider)
 
+        self.imageLabel = QtWidgets.QLabel(Dialog)
+        self.imageLabel.move(20,20)
+        self.imageLabel.setMouseTracking(True)
+
+        self.show_img = np.zeros((300,660,3), dtype=np.uint8)
+        self.show_img.fill(255)
+        cv2.circle(self.show_img, (self.show_img.shape[1]/2, self.show_img.shape[0]/2), 7, (0, 0, 0), thickness=-1)
+        cv2.circle(self.show_img, (self.show_img.shape[1]/2, self.show_img.shape[0]/2), 10, (0, 0, 0), thickness=2)
+        qimg = QImage(self.show_img, self.show_img.shape[1], self.show_img.shape[0], QImage.Format_RGB888)
+        # self.uic.imageLabel.setWindowOpacity(0.8)
+        self.imageLabel.setPixmap(QPixmap.fromImage(qimg))
+
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept)
         self.buttonBox.rejected.connect(Dialog.reject)
@@ -43,4 +58,3 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-

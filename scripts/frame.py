@@ -11,9 +11,6 @@ from frame_gui import Ui_Dialog
 from subprocess import *
 # import rosnode
 
-
-
-
 class Test(QDialog):
     def __init__(self,parent=None):
         # GUI。
@@ -23,6 +20,12 @@ class Test(QDialog):
         # p = self.palette()
         # p.setColor(self.backgroundRole(), Qt.lightGray)
         # self.setPalette(p)
+        self.init_draw()
+
+
+    def init_draw(self):
+        qimg = QImage(self.ui.show_img, self.ui.show_img.shape[1], self.ui.show_img.shape[0], QImage.Format_RGB888)
+        self.ui.imageLabel.setPixmap(QPixmap.fromImage(qimg))
 
 
 
